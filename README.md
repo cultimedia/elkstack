@@ -1,3 +1,5 @@
+![Diagram of ELK stack deployment](images/ELK-stack.jpg)
+
 ## ELK Stack Configuration for Cloudlab
 
 This repository contains the Docker Compose and configuration files used to set up an Elastic Stack (ELK) on a Google Cloud instance for log analysis. It is specifically tailored to handle and analyze logs from network devices and servers, making it ideal for monitoring and security analysis in large-scale deployments.
