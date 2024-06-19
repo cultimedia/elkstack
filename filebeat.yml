@@ -1,0 +1,45 @@
+filebeat.inputs:
+- type: filestream
+  id: suricata-eve-json
+  paths:
+    - /var/log/suricata/eve.json
+
+#filebeat.autodiscover:
+#  providers:
+#    - type: docker
+#      hints.enabled: true
+
+# ============================== Filebeat modules ==============================
+
+#filebeat.config.modules:
+  # Glob pattern for configuration loading
+ # path: ${path.config}/modules.d/*.yml
+
+  # Set to true to enable config reloading
+#  reload.enabled: true
+
+  # Period on which files under path should be checked for changes
+#  reload.period: 10s
+
+#filebeat.modules:
+#  - module: suricata
+#    eve:
+#     enabled: true
+#     var.paths: ["/var/log/suricata/eve.json"]
+
+processors:
+ # - add_docker_metadata: ~
+  - add_host_metadata:
+      when.not.contains.tags: forwarded
+#setup.kibana:
+ # hosts: "https://35.208.203.20:5601"
+ # username: "kibana_system"
+ # password: "0FkkeGANP2ksrBnXc4rWRsAz"
+
+output.elasticsearch:
+  hosts: "https://35.208.203.20:9200"
+  username: "elastic"
+  password: "0FkkeGANP2ksrBnXc4rWRsAz"
+  ssl.enabled: true
+  ssl.certificate_authorities: "/etc/filebeat/certs/ca.crt"
+  
